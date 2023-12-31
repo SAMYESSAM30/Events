@@ -3,7 +3,8 @@ import React, { createContext } from "react";
 import styles from "./page.module.css";
 import { posts } from "./constants";
 import { Box } from "@mui/material";
-import Post from "./Molecules/Post/Post";
+import Event from "./Molecules/event/event";
+
 export const PostsContext = createContext(posts);
 export default function Home() {
   return (
@@ -23,7 +24,7 @@ export default function Home() {
             list of event:
           </Box>
           {posts?.map((item) => (
-            <Post
+            <Event
               title={item.title}
               date={item.date}
               duration={item.duration}

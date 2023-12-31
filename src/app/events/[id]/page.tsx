@@ -10,7 +10,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { PostProps } from "@/app/Molecules/Post/post.type";
+import { EventProps } from "@/app/Molecules/event/event.type";
 
 type Params = {
   params: {
@@ -19,7 +19,7 @@ type Params = {
 };
 
 export default function EditPost({ params: { id } }: Params) {
-  const [post, setPost] = useState<PostProps | undefined>();
+  const [post, setPost] = useState<EventProps | undefined>();
   const newPosts = useContext(PostsContext);
 
   useEffect(() => {

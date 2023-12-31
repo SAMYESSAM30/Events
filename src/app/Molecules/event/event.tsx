@@ -3,7 +3,7 @@ import PostDesc from "@/app/Atoms/PostDesc/PostDesc";
 import PostTitle from "@/app/Atoms/PostTitle/PostTitle";
 import { Box } from "@mui/material";
 import React, { useState } from "react";
-import { PostProps } from "./post.type";
+import { EventProps } from "./event.type";
 import Link from "next/link";
 import { posts } from "../../constants";
 import Card from "@mui/material/Card";
@@ -11,7 +11,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-const Post = ({
+const Event = ({
   joinedUsers,
   description,
   title,
@@ -19,7 +19,7 @@ const Post = ({
   duration,
   location,
   id,
-}: PostProps) => {
+}: EventProps) => {
   const [arrayOfObjects, setArrayOfObjects] = useState(posts);
 
   console.log(arrayOfObjects);
@@ -45,7 +45,7 @@ const Post = ({
             <Button size="small">
               <Link
                 style={{ textDecoration: "none", color: "blue" }}
-                href={`post/${id}`}
+                href={`events/${id}`}
               >
                 Show
               </Link>
@@ -58,4 +58,4 @@ const Post = ({
   );
 };
 
-export default Post;
+export default Event;

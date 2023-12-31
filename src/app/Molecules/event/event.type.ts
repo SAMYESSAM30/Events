@@ -1,4 +1,4 @@
-export type PostProps = {
+export type EventProps = {
   title: string;
   date: string;
   duration: string;
