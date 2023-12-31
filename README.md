@@ -7,7 +7,3 @@
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 To run the tests, use the following command:
-
-```bash
-npm test
-```
