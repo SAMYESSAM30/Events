@@ -58,9 +58,11 @@ export default function EditPost({ params: { id } }: Params) {
             <Typography variant="body2" color="text.secondary">
               <Box component={"h5"}>{post?.location}</Box>
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <p>{post?.joinedUsers}</p>
-            </Typography>
+           
+              <ul>
+                {post?.joinedUsers.slice(0,5).map((user,index)=> <li key={index}>{user}</li> )}
+              </ul>
+      
             <Typography variant="body2" color="text.secondary">
               <Box component={"h5"}>{post?.description}</Box>
             </Typography>

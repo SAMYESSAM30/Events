@@ -3,7 +3,7 @@ export type EventProps = {
   date: string;
   duration: string;
   location: string;
-  joinedUsers: any;
+  joinedUsers: string[];
   description: string;
   id: number;
 };

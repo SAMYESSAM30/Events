@@ -6,7 +6,7 @@ export const posts = [
     duration: "2 hours",
     location: "Tech Hub",
     description: "A meetup for tech enthusiasts to discuss the latest trends.",
-    joinedUsers: ["User1", "User2", "User3", "User4", "User5"],
+    joinedUsers: ["User1", "User2", "User3", "User4", "User5", "User6", "User7", "User8", "User9", "User10"],
   },
   {
     id: 2,
@@ -15,6 +15,6 @@ export const posts = [
     duration: "1.5 hours",
     location: "Fitness Center",
     description: "Join us for an energetic fitness class.",
-    joinedUsers: ["User6", "User7", "User8", "User9", "User10"],
+    joinedUsers: ["User1", "User2", "User3", "User4", "User5","User6", "User7", "User8", "User9", "User10"],
   },
 ];
