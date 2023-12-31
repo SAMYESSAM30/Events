@@ -1,6 +1,7 @@
 "use client";
 import { Box, Button, Container, TextField } from "@mui/material";
 import { SyntheticEvent, useState } from "react";
+import { isAuthenticated } from "../services/auth";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -8,8 +9,9 @@ export default function Home() {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+    sessionStorage.setItem("userName", email);
+    sessionStorage.setItem("password", password);
+    if (isAuthenticated()) window.location.assign('/')
   };
 
   return (
