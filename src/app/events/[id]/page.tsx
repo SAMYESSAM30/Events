@@ -1,10 +1,16 @@
 "use client";
 import { useState, useContext, useEffect } from "react";
-import { Box } from "@mui/material";
+import {
+  Box,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  styled,
+} from "@mui/material";
 import Link from "next/link";
-import PostTitle from "@/app/Atoms/PostTitle/PostTitle";
+import EventTitle from "@/app/Atoms/PostTitle/PostTitle";
 import { PostsContext } from "@/app/page";
-import BaseButton from "@/app/Atoms/BaseButton/BaseButton";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -17,14 +23,29 @@ type Params = {
     id: string;
   };
 };
-
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}));
 export default function EditPost({ params: { id } }: Params) {
-  const [post, setPost] = useState<EventProps | undefined>();
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const [event, setEvent] = useState<EventProps | undefined>();
   const newPosts = useContext(PostsContext);
 
   useEffect(() => {
     const foundPost = newPosts?.find((item) => item?.id === +id);
-    setPost(foundPost);
+    setEvent(foundPost);
   }, [newPosts, id]);
 
   const handleDelete = () => {
@@ -41,30 +62,66 @@ export default function EditPost({ params: { id } }: Params) {
   return (
     <Box sx={{ m: "50px" }}>
       <Box component={"h2"} sx={{ mb: "30px" }}>
-        Event Id: {post?.id}
+        Event Id: {event?.id}
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Card sx={{ maxWidth: 500, mb: "30px" }}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              <PostTitle title={post?.title} />
+              <EventTitle title={event?.title} />
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <Box component={"h5"}>{post?.date}</Box>
+              <Box>{`Date: ${event?.date}`}</Box>
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <Box component={"h5"}>{post?.duration}</Box>
+              <Box>{`Duration: ${event?.duration}`}</Box>
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <Box component={"h5"}>{post?.location}</Box>
+              <Box>{`Location: ${event?.location}`}</Box>
             </Typography>
-           
-              <ul>
-                {post?.joinedUsers.slice(0,5).map((user,index)=> <li key={index}>{user}</li> )}
-              </ul>
-      
+            <h3>Users:</h3>
+            <ul>
+              {" "}
+              {event?.joinedUsers.slice(0, 5).map((user, index) => (
+                <Box component={"li"} sx={{ mt: "10px" }} key={index}>
+                  {user}
+                </Box>
+              ))}
+            </ul>
+            <Button variant="outlined" onClick={handleClickOpen}>
+              all users
+            </Button>
+            <BootstrapDialog
+              onClose={handleClose}
+              aria-labelledby="customized-dialog-title"
+              open={open}
+            >
+              <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                Users
+              </DialogTitle>
+              <IconButton
+                aria-label="close"
+                onClick={handleClose}
+                sx={{
+                  position: "absolute",
+                  right: 8,
+                  top: 8,
+                  color: (theme) => theme.palette.grey[500],
+                }}
+              ></IconButton>
+              <DialogContent dividers>
+                <ul>
+                  {" "}
+                  {event?.joinedUsers.map((user, index) => (
+                    <Box component={"li"} sx={{ mt: "10px" }} key={index}>
+                      {user}
+                    </Box>
+                  ))}
+                </ul>
+              </DialogContent>
+            </BootstrapDialog>
             <Typography variant="body2" color="text.secondary">
-              <Box component={"h5"}>{post?.description}</Box>
+              <Box>{`Description: ${event?.description}`}</Box>
             </Typography>
           </CardContent>
           <CardActions>

@@ -11,7 +11,9 @@ export default function Home() {
     e.preventDefault();
     sessionStorage.setItem("userName", email);
     sessionStorage.setItem("password", password);
-    if (isAuthenticated()) window.location.assign('/')
+    if (isAuthenticated()) window.location.assign("/");
+    if (!isAuthenticated())
+      alert("Please enter the name and password correctly");
   };
 
   return (

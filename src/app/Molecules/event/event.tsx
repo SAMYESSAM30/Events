@@ -5,12 +5,12 @@ import { Box } from "@mui/material";
 import React, { useState } from "react";
 import { EventProps } from "./event.type";
 import Link from "next/link";
-import { posts } from "../../constants";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import events from "@/app/constants";
 const Event = ({
   joinedUsers,
   description,
@@ -20,7 +20,7 @@ const Event = ({
   location,
   id,
 }: EventProps) => {
-  const [arrayOfObjects, setArrayOfObjects] = useState(posts);
+  const [arrayOfObjects, setArrayOfObjects] = useState(events);
 
   console.log(arrayOfObjects);
   return (
@@ -32,13 +32,13 @@ const Event = ({
               <PostTitle title={title} />
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <PostDesc description={date} />
+              <PostDesc description={`Date: ${date}`} />
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <PostDesc description={duration} />
+              <PostDesc description={`duration: ${duration}`} />
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <PostDesc description={location} />
+              <PostDesc description={`location: ${location}`} />
             </Typography>
           </CardContent>
           <CardActions>
